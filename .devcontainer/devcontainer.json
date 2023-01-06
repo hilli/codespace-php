@@ -1,0 +1,33 @@
+{
+  "image": "mcr.microsoft.com/vscode/devcontainers/php:8",
+  "hostRequirements": {
+    "cpus": 4
+  },
+  "waitFor": "onCreateCommand",
+  "updateContentCommand": "",
+  "postCreateCommand": "sudo chmod a+x \"$(pwd)/site\" && sudo rm -rf /var/www/html && sudo ln -s \"$(pwd)/site\" /var/www/html",
+  "postAttachCommand": {
+    "server": "apache2ctl start"
+  },
+  "customizations": {
+    "codespaces": {
+      "openFiles": [
+        "README.md",
+        "site/index.php"
+      ]
+    },
+    "vscode": {
+      "extensions": [
+        "xdebug.php-debug"
+      ]
+    }
+  },
+  "portsAttributes": {
+    "8080": {
+      "label": "Application",
+      "onAutoForward": "openPreview"
+    }
+  },
+  "forwardPorts": [8080]
+}
+
