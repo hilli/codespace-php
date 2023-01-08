@@ -1,24 +1,25 @@
 {
-  "image": "mcr.microsoft.com/vscode/devcontainers/php:8",
+  "dockerComposeFile": "docker-compose.yaml",
   "hostRequirements": {
     "cpus": 4
   },
   "waitFor": "onCreateCommand",
   "updateContentCommand": "",
-  "postCreateCommand": "sudo chmod a+x \"$(pwd)/site\" && sudo rm -rf /var/www/html && sudo ln -s \"$(pwd)/site\" /var/www/html",
+  // "postCreateCommand": "sudo chmod a+x \"$(pwd)/site\" && sudo rm -rf /var/www/html && sudo ln -s \"$(pwd)/site\" /var/www/html",
   "postAttachCommand": {
     "server": "apache2ctl start"
   },
+  "service": "app",
+  "workspaceFolder": "/home/workspace",
   "customizations": {
     "codespaces": {
-      "openFiles": [
-        "README.md",
-        "site/index.php"
-      ]
+      "openFiles": ["README.md", "site/index.php"]
     },
     "vscode": {
       "extensions": [
-        "xdebug.php-debug"
+        "felixfbecker.php-debug",
+        "felixfbecker.php-intellisense",
+        "esbenp.prettier-vscode"
       ]
     }
   },
@@ -26,8 +27,11 @@
     "8080": {
       "label": "Application",
       "onAutoForward": "openPreview"
+    },
+    "8082": {
+      "label": "adminer",
+      "onAutoForward": "notify"
     }
   },
-  "forwardPorts": [8080]
+  "forwardPorts": [8080,8082]
 }
-
