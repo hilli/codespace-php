@@ -19,15 +19,12 @@ RUN corepack enable
 RUN yarn set version stable
 RUN a2enmod rewrite
 
-# COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
-# RUN composer self-update --2
-
 ENV APACHE_DOCUMENT_ROOT /home/workspace/site
 
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
-RUN useradd -ms /bin/bash wp
+RUN useradd -ms /bin/bash vscode
 
-RUN mkdir -p /home/workspace/
-# RUN chown -R vscode:vscode /home/workspace
+RUN mkdir -p /home/workspace
+RUN chown -R vscode:vscode /home/workspace
