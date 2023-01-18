@@ -28,3 +28,4 @@ RUN useradd -ms /bin/bash vscode
 
 RUN mkdir -p /home/workspace
 RUN chown -R vscode:vscode /home/workspace
+USER vscode
