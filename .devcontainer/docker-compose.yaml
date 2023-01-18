@@ -16,10 +16,10 @@ services:
     volumes:
       - db-data:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: realsecret
-      MYSQL_DATABASE: sitedb
-      MYSQL_USER: siteuser
-      MYSQL_PASSWORD: secretpassword
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-realsecret}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-sitedb}
+      MYSQL_USER: ${MYSQL_USER:-siteuser}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-secretpassword}
     ports:
       - '8081:3306'
 

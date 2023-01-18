@@ -24,11 +24,11 @@
   },
   "portsAttributes": {
     "8080": {
-      "label": "Application",
+      "label": "The website",
       "onAutoForward": "openPreview"
     },
     "8082": {
-      "label": "adminer",
+      "label": "adminer - DB Administration",
       "onAutoForward": "notify"
     }
   },
