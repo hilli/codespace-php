@@ -30,6 +30,7 @@
     die("Connection failed: " . $conn->connect_error);
   } else {
     echo "DB Connections works!";
+    $conn->close();
   }
   ?>
   <h2>php info</h2>
