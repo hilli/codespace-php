@@ -1,0 +1,19 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Save DB Schema",
+      "type": "shell",
+      "command": "mysqldump -h 127.0.0.1 -u mariadb -pmariadb --tables --no-data --add-drop-table=FALSE mariadb > ${workspaceRoot}/database/schema.sql",
+      "problemMatcher": []
+    },
+    {
+      "label": "Save DB Data",
+      "type": "shell",
+      "command": "mysqldump -h 127.0.0.1 -u mariadb -pmariadb --no-create-info mariadb > ${workspaceRoot}/database/data_dump.sql",
+      "problemMatcher": []
+    }
+  ]
+}

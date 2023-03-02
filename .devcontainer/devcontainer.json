@@ -1,0 +1,48 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/php-mariadb
+{
+	"name": "PHP & MariaDB",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+
+	"portsAttributes": {
+		"3306": {
+			"label": "MariaDB (Free MySQL server)",
+			"onAutoForward": "ignore"
+		},
+    "8080": {
+      "label": "The website",
+      "onAutoForward": "openBrowser"
+    },
+    "8082": {
+      "label": "adminer - DB Administration",
+      "onAutoForward": "notify"
+    }
+  },
+	
+	// For use with PHP or Apache (e.g. php -S localhost:8080 or apache2ctl start)
+	"forwardPorts": [ 3306,	8080,	8082 ],
+
+	"features": {
+		"ghcr.io/devcontainers/features/github-cli:1": {
+			"installDirectlyFromGitHubRelease": true,
+			"version": "latest"
+		}
+	},
+
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"xdebug.php-pack",
+				"ms-vscode-remote.vscode-remote-extensionpack",
+				"mtxr.sqltools",
+				"mtxr.sqltools-driver-mysql",
+				"ms-vsliveshare.vsliveshare"
+			]
+		}
+	},
+	
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "sudo chmod a+x \"$(pwd)/site\" && sudo rm -rf /var/www/html && sudo ln -s \"$(pwd)/site\" /var/www/html"
+}
